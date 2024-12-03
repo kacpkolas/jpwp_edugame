@@ -8,12 +8,12 @@ public class GamePanel extends JPanel implements KeyListener {
     private int level = 1;
     private final int playerSize = 30;
     private final int step = 10;
-    private int lives = 3; // Licznik żyć
+    private int lives = 3; 
     private ArrayList<Rectangle> goals;
     private ArrayList<Color> goalColors;
     private ArrayList<Color> requiredSequence;
-    private Rectangle checkPoint; // Żółte pole sprawdzające sekwencję
-    private int currentGoalIndex = -1; // Indeks aktualnego kwadratu, na którym stoi gracz
+    private Rectangle checkPoint; 
+    private int currentGoalIndex = -1; 
     private boolean isPaused = false;
     private JPanel menuPanel;
     private JButton openMenuButton;
@@ -80,7 +80,7 @@ public class GamePanel extends JPanel implements KeyListener {
         goals = new ArrayList<>();
         goalColors = new ArrayList<>();
 
-        // Sekwencja wymagana dla poziomu
+    
         requiredSequence = new ArrayList<>();
 
         if (level == 1) {
@@ -89,12 +89,11 @@ public class GamePanel extends JPanel implements KeyListener {
             goals.add(new Rectangle(50, 200, 30, 30));
             goals.add(new Rectangle(50, 400, 30, 30));
 
-            //poczatkowe ustawienie wejsc
+        
             goalColors.add(Color.RED);
             goalColors.add(Color.RED);
             goalColors.add(Color.RED);
 
-            // Wymagane ustawienie wejsc dla danego poziomu
             requiredSequence.add(Color.GREEN);
             requiredSequence.add(Color.RED);
             requiredSequence.add(Color.GREEN);
@@ -115,11 +114,11 @@ public class GamePanel extends JPanel implements KeyListener {
             requiredSequence.add(Color.RED);
             requiredSequence.add(Color.GREEN);
 
-            // Żółte pole (checkPoint)
+         
             checkPoint = new Rectangle(700, 200, 50, 50);
         }
 
-        currentGoalIndex = -1; // Na początku gracz nie jest na żadnym kwadracie
+        currentGoalIndex = -1; 
     }
 
     @Override
@@ -136,14 +135,14 @@ public class GamePanel extends JPanel implements KeyListener {
         g.setColor(Color.BLUE);
         g.fillRect(playerX, playerY, playerSize, playerSize);
 
-        // Rysowanie kwadratów
+     
         for (int i = 0; i < goals.size(); i++) {
             g.setColor(goalColors.get(i));
             Rectangle goal = goals.get(i);
             g.fillRect(goal.x, goal.y, goal.width, goal.height);
         }
 
-        // Rysowanie żółtego pola (checkPoint)
+ 
         g.setColor(Color.YELLOW);
         g.fillOval(checkPoint.x, checkPoint.y, checkPoint.width, checkPoint.height);
 
@@ -155,13 +154,13 @@ public class GamePanel extends JPanel implements KeyListener {
     }
 
     private void checkSequence() {
-        // czy wejscia pasują do wymaganych
+
         if (goalColors.equals(requiredSequence)) {
             JOptionPane.showMessageDialog(this, "Brawo! Poprawnie dobrane wejscia ukladu!");
 
             nextLevel();
         } else {
-            lives--; // Zmniejszenie liczby żyć
+            lives--; 
             if (lives == 0) {
                 JOptionPane.showMessageDialog(this, "Przegrales! Wracasz do menu glownego.");
                 returnToMainMenu();
@@ -173,7 +172,7 @@ public class GamePanel extends JPanel implements KeyListener {
     }
 
     private void resetLevel() {
-        // Resetujemy stan kwadratów
+
         playerX = 50;
         playerY = 50;
         for (int i = 0; i < goalColors.size(); i++) {
@@ -198,7 +197,7 @@ public class GamePanel extends JPanel implements KeyListener {
             JOptionPane.showMessageDialog(this, "Wygrales całą grę!");
             System.exit(0);
         } else {
-            lives = 3; // Reset liczby żyć na początek nowego poziomu
+            lives = 3; 
             loadLevel();
             playerX = 50;
             playerY = 50;
@@ -217,17 +216,15 @@ public class GamePanel extends JPanel implements KeyListener {
 
         Rectangle playerBounds = new Rectangle(playerX, playerY, playerSize, playerSize);
 
-        // sprawdzanie czy gracz wszedl na pole zatwierdzajace
         if (playerBounds.intersects(checkPoint)) {
             checkSequence();
             return;
         }
 
-        // sprawdzanie czy gracz wszedl na wejscie
         for (int i = 0; i < goals.size(); i++) {
             if (playerBounds.intersects(goals.get(i))) {
                 if (currentGoalIndex != i) {
-                    // zmiana koloru na przeciwny
+                 
                     goalColors.set(i, goalColors.get(i) == Color.RED ? Color.GREEN : Color.RED);
 
 
