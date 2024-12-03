@@ -1,7 +1,7 @@
 import javax.swing.*;
 
 
-// Klasa główna
+
 public class Game {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -19,4 +19,4 @@ public class Game {
 }
 
 
-// Klasa Menu Glownego
+
