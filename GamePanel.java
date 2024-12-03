@@ -98,7 +98,7 @@ public class GamePanel extends JPanel implements KeyListener {
             requiredSequence.add(Color.RED);
             requiredSequence.add(Color.GREEN);
 
-            // Żółte pole (checkPoint)
+       
             checkPoint = new Rectangle(900, 600, 30, 30);
         } else if (level == 2) {
             backgroundImage = new ImageIcon("background_level2.jpg").getImage();
@@ -146,7 +146,7 @@ public class GamePanel extends JPanel implements KeyListener {
         g.setColor(Color.YELLOW);
         g.fillOval(checkPoint.x, checkPoint.y, checkPoint.width, checkPoint.height);
 
-        // Wyświetlanie liczby żyć
+  
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.drawString("Poziom: " + level, 10, 20);
